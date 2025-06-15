@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Food Order</a>
+            <button class="navbar-toggler" type="button" onclick="toggleSidebar()">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button class="nav-link btn" onclick="toggleDarkMode()">
+                            <i class="fas fa-moon"></i> Dark Mode
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link btn btn-danger" onclick="logout()">Logout</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar
+    <div class="sidebar">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="customer_dashboard.html">
+                    <i class="fas fa-utensils"></i> Daftar Menu
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="customer_history.html">
+                    <i class="fas fa-history"></i> Riwayat Pesanan
+                </a>
+            </li>
+        </ul>
+    </div> -->
+
+    <!-- Content -->
+    <div class="container mt-5">
+        <h2 class="fade-in">Daftar Menu</h2>
+        <div class="spinner"></div>
+        
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="customer_dashboard.html">
+                        <i class="fas fa-utensils"></i> Daftar Menu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="customer_history.html">
+                        <i class="fas fa-history"></i> Riwayat Pesanan
+                    </a>
+                </li>
+            </ul>
+        
+        <form class="filter-form fade-in" onsubmit="filterMenus(); return false;">
+            <div class="row">
+                <div class="col-12 col-md-4 mb-3">
+                    <label>Cari Nama Menu</label>
+                    <input type="text" id="search" class="form-control" placeholder="Ketik nama menu..." oninput="filterMenus()">
+                </div>
+                <div class="col-12 col-md-3 mb-3">
+                    <label>Rentang Harga</label>
+                    <select id="price-range" class="form-control" onchange="filterMenus()">
+                        <option value="all">Semua</option>
+                        <option value="0-20000">Rp 0 - 20,000</option>
+                        <option value="20000-30000">Rp 20,000 - 30,000</option>
+                        <option value="30000">> Rp 30,000</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-3 mb-3">
+                    <label>Pilih Warung</label>
+                    <select id="warung-filter" class="form-control" onchange="filterMenus()">
+                        <option value="all">Semua Warung</option>
+                        ${warung.filter(w => w.status === 'aktif').map(w => `<option value="${w.id}">${w.nama_warung}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="col-12 col-md-2 mb-3">
+                    <label>&nbsp;</label>
+                    <button type="submit" class="btn btn-primary w-100">Filter</button>
+                </div>
+            </div>
+        </form>
+        <div class="row" id="menu-list"></div>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="modal fade" id="orderModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Pesan <span id="orderMenuName"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="placeOrder(document.getElementById('orderMenuId').value, this.jumlah.value); return false;">
+                        <input type="hidden" id="orderMenuId">
+                        <div class="mb-3">
+                            <label>Jumlah</label>
+                            <input type="number" name="jumlah" class="form-control" min="1" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Konfirmasi Pesanan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal -->
+    <div class="modal fade" id="galleryModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Galeri Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="galleryCarousel" class="carousel slide">
+                        <div class="carousel-inner"></div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        loadTheme();
+        checkAuth('customer');
+        filterMenus();
+    </script>
+</body>
+</html>

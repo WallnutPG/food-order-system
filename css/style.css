@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --primary: #4DA8DA; /* Biru cerah */
+    --secondary: #FF9999; /* Peach pastel */
+    --bg-light: #F7F9FC; /* Krem cerah */
+    --bg-dark: #1C2526; /* Hampir hitam */
+    --card-dark: #2A3439; /* Abu-abu tua */
+    --text-light: #2C3E50; /* Biru tua soft */
+    --text-dark: #F5F7FA; /* Hampir putih */
+    --text-secondary: #A3BFFA; /* Biru muda soft */
+    --text-placeholder: #B0BEC5; /* Abu-abu soft */
+    --table-hover: #3A4A50; /* Abu-abu gelap */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.light {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+}
+
+body.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+.navbar {
+    background-color: var(--bg-light);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+body.dark .navbar {
+    background-color: var(--card-dark);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.navbar-nav .nav-link {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+body.dark .navbar-nav .nav-link {
+    color: var(--text-dark);
+}
+
+body.dark .navbar-nav .nav-link:hover {
+    color: var(--primary);
+}
+
+.sidebar {
+    background-color: var(--bg-dark);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -200px;
+    width: 200px;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+body.dark .sidebar {
+    background-color: var(--card-dark);
+}
+
+.sidebar.active {
+    transform: translateX(200px);
+}
+
+.sidebar .nav-link {
+    color: var(--text-dark);
+    padding: 12px 15px;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+body.dark .sidebar .nav-link {
+    color: var(--text-dark);
+}
+
+.sidebar .nav-link:hover, .sidebar .nav-link.active {
+    background-color: var(--secondary);
+    color: var(--bg-dark);
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+body.dark .card {
+    background-color: var(--card-dark);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.card-img-top {
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.card-body small {
+    color: var(--text-secondary);
+}
+
+body.dark .card-body small {
+    color: var(--text-secondary);
+}
+
+.card-body .card-text {
+    color: var(--secondary);
+}
+
+.profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    background-color: #3A8FC0;
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--bg-dark);
+}
+
+.btn-danger {
+    font-size: 0.9rem;
+}
+
+.filter-form .form-control {
+    border-radius: 8px;
+    border: 1px solid var(--primary);
+    box-shadow: none;
+    font-size: 0.9rem;
+}
+
+body.dark .filter-form .form-control {
+    background-color: var(--card-dark);
+    color: var(--text-dark);
+    border: 1px solid var(--primary);
+}
+
+body.dark .filter-form .form-control::placeholder {
+    color: var(--text-placeholder);
+}
+
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.9rem;
+}
+
+body.dark .table {
+    background-color: var(--card-dark);
+}
+
+.table thead {
+    background-color: var(--primary);
+    color: var(--text-dark);
+}
+
+.table tr {
+    transition: background 0.2s;
+}
+
+.table tr:hover {
+    background-color: rgba(77, 168, 218, 0.1);
+}
+
+body.dark .table tr:hover {
+    background-color: var(--table-hover);
+}
+
+.badge {
+    font-size: 0.8em;
+    padding: 5px 10px;
+    border-radius: 12px;
+    color: var(--bg-dark);
+}
+
+body.dark .badge {
+    color: var(--text-dark);
+}
+
+.carousel-inner img {
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: rgba(0,0,0,0.3);
+    width: 40px;
+}
+
+.modal-content {
+    background-color: #fff;
+}
+
+body.dark .modal-content {
+    background-color: var(--card-dark);
+    color: var(--text-dark);
+}
+
+body.dark .modal-content .btn-close {
+    filter: invert(1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.spinner {
+    display: none;
+    border: 4px solid rgba(0,0,0,0.1);
+    border-left-color: var(--primary);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+    margin: auto;
+}
+
+body.dark .spinner {
+    border: 4px solid rgba(255,255,255,0.1);
+    border-left-color: var(--primary);
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+    .filter-form .col-12, .filter-form .col-md-4, .filter-form .col-md-3, .filter-form .col-md-2 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 10px;
+    }
+    .card-img-top {
+        height: 120px;
+    }
+    .carousel-inner img {
+        height: 200px;
+    }
+    .card {
+        margin-bottom: 15px;
+    }
+    .btn-primary, .btn-secondary, .btn-danger {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+    .profile-img {
+        width: 30px;
+        height: 30px;
+    }
+    .table {
+        font-size: 0.85rem;
+        overflow-x: auto;
+        display: block;
+    }
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+    }
+    .card-body small, .card-body .card-text {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    h3 {
+        font-size: 1.2rem;
+    }
+    .card-title {
+        font-size: 1rem;
+    }
+    .card-text {
+        font-size: 0.9rem;
+    }
+    .modal-dialog {
+        margin: 10px;
+    }
+}

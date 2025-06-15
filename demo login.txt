@@ -1,0 +1,15 @@
+Customer:
+	Email: customer1@gmail.com, Password: password123
+	Email: customer2@gmail.com, Password: pass456
+	Email: customer3@gmail.com, Password: pass789
+
+Seller:
+	Email: seller1@gmail.com, Password: password123 (Warung: Warung Makan Pak Joko)
+	Email: seller2@gmail.com, Password: sell456 (Warung: Warung Bu Tini)
+	Email: seller3@gmail.com, Password: sell789 (Warung: Warung Mas Budi)
+
+Admin:
+	Email: admin@gmail.com, Password: password123
+	Email: admin2@gmail.com, Password: adm456
+	Email: admin3@gmail.com, Password: adm789
+
